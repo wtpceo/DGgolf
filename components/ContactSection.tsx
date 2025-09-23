@@ -59,7 +59,7 @@ export default function ContactSection() {
       title: '주소',
       content: '광주광역시 동구 용산3길 4, 301호',
       subContent: '(용산동, 용산지구 조은프라자3)',
-      action: () => window.open('https://naver.me/G58YScdR', '_blank')
+      action: () => { window.open('https://naver.me/G58YScdR', '_blank'); }
     },
     {
       icon: (
@@ -70,7 +70,7 @@ export default function ContactSection() {
       title: '연락처',
       content: '010-4441-1051',
       subContent: '상담 가능 시간: 09:00 - 21:00',
-      action: () => window.location.href = 'tel:010-4441-1051'
+      action: () => { window.location.href = 'tel:010-4441-1051'; }
     },
     {
       icon: (
@@ -81,7 +81,7 @@ export default function ContactSection() {
       title: '영업시간',
       content: '평일: 06:00 - 22:00',
       subContent: '주말: 06:00 - 21:00',
-      action: null
+      action: undefined
     }
   ];
 

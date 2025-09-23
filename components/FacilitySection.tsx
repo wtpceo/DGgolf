@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 const facilities = [
   {
@@ -73,9 +74,11 @@ export default function FacilitySection() {
         {/* Facility Card */}
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           <div className="relative group overflow-hidden rounded-2xl">
-            <img
+            <Image
               src={facilities[selectedFacility].image}
               alt={facilities[selectedFacility].title}
+              width={600}
+              height={400}
               className="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -114,9 +117,11 @@ export default function FacilitySection() {
                 selectedFacility === index ? 'ring-2 ring-emerald-500' : ''
               }`}
             >
-              <img
+              <Image
                 src={facility.image}
                 alt={facility.title}
+                width={200}
+                height={96}
                 className="w-full h-24 object-cover hover:scale-110 transition-transform duration-300"
               />
               <div className="p-2 bg-zinc-800 text-center">

@@ -1,9 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-
 export default function FixedContact() {
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleCall = () => {
     window.location.href = 'tel:010-4441-1051';
