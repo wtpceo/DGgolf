@@ -130,7 +130,7 @@ export default function InstructorSection() {
               20년간 축적된 노하우와 체계적인 커리큘럼으로 여러분의 골프 실력 향상을 책임지겠습니다.
             </p>
             <p className="text-emerald-500 text-center font-semibold text-lg">
-              "흘린 땀은 배신하지 않습니다. 체계적인 레슨으로 플레이다운을 실현하세요."
+              &quot;흘린 땀은 배신하지 않습니다. 체계적인 레슨으로 플레이다운을 실현하세요.&quot;
             </p>
           </div>
 
