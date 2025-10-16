@@ -2,56 +2,76 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const facilities = [
   {
     id: 1,
     title: '레슨타석',
-    description: 'QED EYE XO 스윙분석기',
-    features: ['고성능 카메라', '무빙타석매트(SBS골프 GSPI)', '실시간 스윙 분석'],
+    description: 'QED EYE XO 스윙분석기 - 최첨단 레슨 시스템',
+    features: ['고성능 카메라로 정밀 분석', '무빙타석매트(SBS골프 GSPI)', '실시간 스윙 피드백', '1:1 프라이빗 맞춤레슨'],
     image: 'https://images.unsplash.com/photo-1633328991335-8b50638d52e6?q=80&w=2070'
   },
   {
     id: 2,
     title: '연습타석',
-    description: 'QED PRO 스윙분석기 사용',
-    features: ['공방 특별주문 천연가죽 타석의자', '개인별 맞춤 연습 공간'],
+    description: 'QED PRO 스윙분석기 - 체계적 자가 연습',
+    features: ['공방 특별주문 천연가죽 타석의자', '개인별 맞춤 연습 공간', '최신 스윙분석 장비', '쾌적한 연습 환경'],
     image: 'https://images.unsplash.com/photo-1622533025621-8524e4bd3c67?q=80&w=2070'
   },
   {
     id: 3,
     title: '야외퍼팅장',
-    description: '실제 필드와 가까운 야외 퍼팅 연습 공간',
-    features: ['스윙머신', '다양한 경사도 연습', '실전 감각 향상'],
+    description: '실제 필드와 동일한 야외 퍼팅 연습 공간',
+    features: ['스윙머신 완비', '다양한 경사도 연습', '실전 감각 향상', '자연 속 라운드 대비'],
     image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070'
   },
   {
     id: 4,
-    title: '야외대형스크린',
-    description: '골프채널 시청',
-    features: ['대회 중계 시청', '레슨 영상 분석', '휴식 중 관람'],
+    title: '야외테라스 & 스크린',
+    description: '야외대형스크린 골프채널 시청',
+    features: ['대회 중계 실시간 시청', '레슨 영상 분석', '휴식 중 관람', '야외 테라스 공간'],
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070'
   },
   {
     id: 5,
-    title: '휴식공간',
-    description: '편안한 휴식과 네트워킹',
-    features: ['카페테리아', '라운지', '회원 간 교류 공간'],
+    title: '프리미엄 휴게공간',
+    description: '우월한 실내 인테리어와 편안한 휴식 공간',
+    features: ['쾌적한 라운지', '회원 간 네트워킹', '고급스러운 인테리어', '차별화된 휴식 경험'],
     image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2070'
   }
 ];
 
 export default function FacilitySection() {
   const [selectedFacility, setSelectedFacility] = useState(0);
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { elementRef: cardRef, isVisible: cardVisible } = useScrollAnimation();
 
   return (
-    <section id="facility" className="py-20 px-4 bg-zinc-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+    <section id="facility" className="relative py-20 px-4 bg-zinc-900 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          style={{
+            backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_0.png')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-zinc-900/70" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             시설소개 <span className="text-emerald-500">& 장비</span>
           </h2>
-          <p className="text-gray-400 text-lg">최첨단 장비와 쾌적한 환경에서 골프를 즐기세요</p>
+          <p className="text-gray-400 text-lg mb-4">최첨단 스윙분석 장비와 우월한 실내 인테리어</p>
+          <p className="text-emerald-500 font-semibold">야외테라스 · 야외퍼팅장 · 휴게공간 · 스크린 상영관 완비</p>
         </div>
 
         {/* Facility Tabs */}
@@ -72,7 +92,12 @@ export default function FacilitySection() {
         </div>
 
         {/* Facility Card */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div
+          ref={cardRef}
+          className={`grid lg:grid-cols-2 gap-8 items-center transition-all duration-1000 delay-200 ${
+            cardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+          }`}
+        >
           <div className="relative group overflow-hidden rounded-2xl">
             <Image
               src={facilities[selectedFacility].image}

@@ -1,9 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function ContactSection() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -79,23 +82,44 @@ export default function ContactSection() {
         </svg>
       ),
       title: '영업시간',
-      content: '평일: 06:00 - 22:00',
-      subContent: '주말: 06:00 - 21:00',
+      content: '월/화/목/금 09:00-23:00 | 수 13:30-22:20',
+      subContent: '토 13:30-20:00 | 일요일 휴장',
       action: undefined
     }
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 bg-zinc-800">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+    <section id="contact" className="relative py-20 px-4 bg-zinc-800 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          style={{
+            backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_3.png')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-zinc-800/70" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             오시는 <span className="text-emerald-500">길</span>
           </h2>
           <p className="text-gray-400 text-lg">DG골프레슨스튜디오로 오시는 길을 안내해드립니다</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div
+          ref={contentRef}
+          className={`grid lg:grid-cols-2 gap-8 transition-all duration-1000 delay-200 ${
+            contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+          }`}
+        >
           {/* Map */}
           <div className="bg-zinc-700 rounded-2xl overflow-hidden">
             <div ref={mapRef} className="w-full h-[400px] bg-zinc-600">
@@ -112,7 +136,9 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className={`space-y-6 transition-all duration-1000 delay-400 ${
+            contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}>
             {contactInfo.map((info, index) => (
               <div
                 key={index}

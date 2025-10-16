@@ -2,6 +2,7 @@ import HeroSection from '@/components/HeroSection';
 import FixedContact from '@/components/FixedContact';
 import FacilitySection from '@/components/FacilitySection';
 import InstructorSection from '@/components/InstructorSection';
+import CheckpointSection from '@/components/CheckpointSection';
 import ProgramSection from '@/components/ProgramSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroSection />
       <FacilitySection />
       <InstructorSection />
+      <CheckpointSection />
       <ProgramSection />
       <ContactSection />
       <Footer />

@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function ProgramSection() {
   const [activeTab, setActiveTab] = useState('program');
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
   const programs = [
     {
@@ -38,28 +41,50 @@ export default function ProgramSection() {
 
   const schedule = {
     weekday: {
-      open: '06:00',
-      close: '22:00',
-      lesson: '07:00 - 21:00'
+      days: '월, 화, 목, 금',
+      hours: '오전 09:00 - 저녁 11:00'
     },
-    weekend: {
-      open: '06:00',
-      close: '21:00',
-      lesson: '08:00 - 20:00'
+    wednesday: {
+      days: '수요일',
+      hours: '오후 1:30 - 저녁 10:20'
+    },
+    saturday: {
+      days: '토요일',
+      hours: '오후 1:30 - 저녁 8:00'
+    },
+    sunday: {
+      days: '일요일',
+      hours: '휴장'
     }
   };
 
   const pricing = [
-    { type: '월 회원권', price: '문의', description: '무제한 연습 + 레슨' },
-    { type: '10회 레슨권', price: '문의', description: '3개월 내 사용' },
-    { type: '20회 레슨권', price: '문의', description: '6개월 내 사용' },
-    { type: '1:1 프리미엄', price: '문의', description: '맞춤형 집중 레슨' }
+    { type: 'Occasionally 맞춤형', price: '문의', description: '주1회 30분 레슨 + 주2회 65분 연습' },
+    { type: 'Normal 일반형', price: '문의', description: '주2회 30분 레슨 + 주4회 65분 연습' },
+    { type: 'Frequently "1"', price: '문의', description: '주3회 30분 레슨 + 주3회 65분 연습' },
+    { type: 'Frequently "2"', price: '문의', description: '주4회 30분 레슨 + 주2회 65분 연습' }
   ];
 
   return (
-    <section id="program" className="py-20 px-4 bg-zinc-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+    <section id="program" className="relative py-20 px-4 bg-zinc-900 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          style={{
+            backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_2.png')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-zinc-900/70" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             레슨 프로그램 <span className="text-emerald-500">& 요금</span>
           </h2>
@@ -104,11 +129,14 @@ export default function ProgramSection() {
 
         {/* Program Content */}
         {activeTab === 'program' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={contentRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {programs.map((program, index) => (
               <div
                 key={index}
-                className="bg-zinc-800 rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 group"
+                className={`bg-zinc-800 rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-500 group ${
+                  contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className={`h-2 bg-gradient-to-r ${program.color}`} />
                 <div className="p-6">
@@ -136,34 +164,26 @@ export default function ProgramSection() {
 
         {/* Schedule Content */}
         {activeTab === 'schedule' && (
-          <div className="max-w-3xl mx-auto">
+          <div ref={contentRef} className={`max-w-4xl mx-auto transition-all duration-700 ${
+            contentVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}>
             <div className="bg-zinc-800 rounded-2xl p-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-6">평일</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-gray-400 text-sm mb-1">영업시간</p>
-                      <p className="text-xl text-white">{schedule.weekday.open} - {schedule.weekday.close}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm mb-1">레슨시간</p>
-                      <p className="text-xl text-emerald-500">{schedule.weekday.lesson}</p>
-                    </div>
-                  </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-zinc-700 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-emerald-500 mb-2">{schedule.weekday.days}</h3>
+                  <p className="text-xl text-white">{schedule.weekday.hours}</p>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-6">주말/공휴일</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-gray-400 text-sm mb-1">영업시간</p>
-                      <p className="text-xl text-white">{schedule.weekend.open} - {schedule.weekend.close}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm mb-1">레슨시간</p>
-                      <p className="text-xl text-emerald-500">{schedule.weekend.lesson}</p>
-                    </div>
-                  </div>
+                <div className="bg-zinc-700 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-emerald-500 mb-2">{schedule.wednesday.days}</h3>
+                  <p className="text-xl text-white">{schedule.wednesday.hours}</p>
+                </div>
+                <div className="bg-zinc-700 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-emerald-500 mb-2">{schedule.saturday.days}</h3>
+                  <p className="text-xl text-white">{schedule.saturday.hours}</p>
+                </div>
+                <div className="bg-zinc-700 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-red-500 mb-2">{schedule.sunday.days}</h3>
+                  <p className="text-xl text-gray-400">{schedule.sunday.hours}</p>
                 </div>
               </div>
               <div className="mt-8 p-4 bg-zinc-700 rounded-lg">
@@ -177,11 +197,14 @@ export default function ProgramSection() {
 
         {/* Pricing Content */}
         {activeTab === 'pricing' && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={contentRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {pricing.map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-zinc-700 to-zinc-800 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300"
+                className={`bg-gradient-to-br from-zinc-700 to-zinc-800 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-500 ${
+                  contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <h3 className="text-xl font-bold text-white mb-2">{item.type}</h3>
                 <p className="text-3xl font-bold text-emerald-500 mb-4">{item.price}</p>

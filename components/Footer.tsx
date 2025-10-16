@@ -8,10 +8,15 @@ export default function Footer() {
             <h3 className="text-2xl font-bold text-white mb-4">
               DG<span className="text-emerald-500">골프레슨스튜디오</span>
             </h3>
-            <p className="text-gray-400 text-sm">
-              Dream Golf in 광주<br />
+            <p className="text-gray-400 text-sm mb-3">
+              프리미엄 맞춤레슨 · 프라이빗 개인레슨<br />
               성별, 나이, 근력, 정신력, 목표에 따른<br />
-              맞춤레슨과 멘탈클리닉
+              체계적이고 맞춤화된 지도
+            </p>
+            <p className="text-emerald-500 font-semibold text-sm">
+              꿈의 골프<br />
+              The Dream of Golf<br />
+              coach PARK Jinyoung
             </p>
           </div>
 
@@ -46,16 +51,20 @@ export default function Footer() {
                 <span>광주광역시 동구 용산3길 4, 301호<br />(용산동, 용산지구 조은프라자3)</span>
               </li>
               <li className="flex items-center">
-                <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-emerald-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <span>010-4441-1051</span>
               </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 text-primary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <li className="flex items-start">
+                <svg className="w-4 h-4 text-emerald-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>평일: 06:00-22:00 / 주말: 06:00-21:00</span>
+                <span>
+                  월/화/목/금 09:00-23:00<br />
+                  수 13:30-22:20 | 토 13:30-20:00<br />
+                  일요일 휴장
+                </span>
               </li>
             </ul>
 

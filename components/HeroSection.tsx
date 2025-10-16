@@ -25,19 +25,29 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-            <span className="text-emerald-500">Dream Golf</span> in 광주레슨
-          </h1>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-8 text-2xl md:text-3xl text-gray-200">
-            <span className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">입문</span>
-            <span className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">교정</span>
+          <div className="mb-6">
+            <p className="text-emerald-500 text-xl md:text-2xl font-semibold mb-2">프리미엄 맞춤레슨 · 프라이빗 개인레슨</p>
+            <h1 className="text-5xl md:text-7xl font-bold text-white">
+              <span className="text-emerald-500">DG골프</span> 레슨스튜디오
+            </h1>
           </div>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed">
+          <div className="flex flex-wrap justify-center gap-4 mb-8 text-xl md:text-2xl text-gray-200">
+            <span className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">골프맛집</span>
+            <span className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">레슨맛집</span>
+            <span className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">광주동구</span>
+          </div>
+
+          <p className="text-lg md:text-xl text-gray-300 mb-4 leading-relaxed">
             성별 · 나이 · 근력 · 정신력 · 목표에 따른
             <br />
-            <span className="text-2xl font-semibold text-emerald-500">맞춤레슨 · 멘탈클리닉</span>
+            <span className="text-2xl font-semibold text-emerald-500">체계적이고 맞춤화된 지도</span>
+          </p>
+
+          <p className="text-base md:text-lg text-gray-400 mb-12 leading-relaxed">
+            굿샷, 나이스온, 나이스버디! 정말 짜릿한 멘트입니다.
+            <br />
+            DG골프 회원이 되신다면 <span className="text-emerald-400 font-semibold">트렌디하고 멋진 스윙</span>으로 굿샷을 맛보실 수 있습니다.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
