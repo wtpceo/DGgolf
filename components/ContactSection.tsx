@@ -1,55 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function ContactSection() {
-  const mapRef = useRef<HTMLDivElement>(null);
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation();
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY || 'YOUR_KAKAO_MAP_KEY'}&autoload=false`;
-    script.async = true;
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        if (!mapRef.current) return;
-
-        const container = mapRef.current;
-        const options = {
-          center: new window.kakao.maps.LatLng(35.1538, 126.9170), // 광주 용산동 좌표 (대략적)
-          level: 3
-        };
-
-        const map = new window.kakao.maps.Map(container, options);
-
-        // 마커 추가
-        const markerPosition = new window.kakao.maps.LatLng(35.1538, 126.9170);
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition
-        });
-        marker.setMap(map);
-
-        // 인포윈도우 추가
-        const iwContent = '<div style="padding:5px;">DG골프레슨스튜디오</div>';
-        const infowindow = new window.kakao.maps.InfoWindow({
-          content: iwContent
-        });
-        infowindow.open(map, marker);
-      });
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      const existingScript = document.querySelector(`script[src*="dapi.kakao.com"]`);
-      if (existingScript) {
-        existingScript.remove();
-      }
-    };
-  }, []);
 
   const contactInfo = [
     {
@@ -93,12 +48,12 @@ export default function ContactSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 blur-sm"
           style={{
             backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_3.png')`,
           }}
         />
-        <div className="absolute inset-0 bg-zinc-800/70" />
+        <div className="absolute inset-0 bg-zinc-800/75 backdrop-blur-[2px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -121,18 +76,18 @@ export default function ContactSection() {
           }`}
         >
           {/* Map */}
-          <div className="bg-zinc-700 rounded-2xl overflow-hidden">
-            <div ref={mapRef} className="w-full h-[400px] bg-zinc-600">
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                <div className="text-center">
-                  <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <p>지도 로딩중...</p>
-                </div>
-              </div>
-            </div>
+          <div className="bg-zinc-700 rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://www.google.com/maps?q=광주광역시+동구+용산3길+4+301호&output=embed"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-[400px]"
+              title="DG골프레슨스튜디오 위치"
+            />
           </div>
 
           {/* Contact Information */}

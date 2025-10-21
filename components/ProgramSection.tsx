@@ -70,12 +70,12 @@ export default function ProgramSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 blur-sm"
           style={{
             backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_2.png')`,
           }}
         />
-        <div className="absolute inset-0 bg-zinc-900/70" />
+        <div className="absolute inset-0 bg-zinc-900/75 backdrop-blur-[2px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">

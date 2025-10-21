@@ -14,12 +14,12 @@ export default function HeroSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-[2px]"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070')`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/75 backdrop-blur-[1px]" />
       </div>
 
       {/* Content */}

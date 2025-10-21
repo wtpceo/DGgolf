@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function InstructorSection() {
@@ -12,12 +13,12 @@ export default function InstructorSection() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 blur-sm"
           style={{
             backgroundImage: `url('/imgage/u4741571414_golfer_teeing_off_at_dawn_on_a_beautiful_golf_cou_f9d30d1b-a453-40f5-88a1-1440173ac8c8_1.png')`,
           }}
         />
-        <div className="absolute inset-0 bg-zinc-800/70" />
+        <div className="absolute inset-0 bg-zinc-800/75 backdrop-blur-[2px]" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -40,16 +41,16 @@ export default function InstructorSection() {
           }`}
         >
           <div className="grid md:grid-cols-2 gap-0">
-            {/* Profile Image Placeholder */}
-            <div className="relative h-[500px] bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-48 h-48 mx-auto bg-zinc-700 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-24 h-24 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                </div>
-                <p className="text-gray-400">프로필 사진</p>
-              </div>
+            {/* Profile Image */}
+            <div className="relative h-[500px] overflow-hidden group">
+              <Image
+                src="/imgage/facility-lesson-bay.jpeg"
+                alt="박진영 코치"
+                fill
+                className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-800 via-zinc-800/40 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
             </div>
 
             {/* Profile Information */}
