@@ -149,7 +149,7 @@ export default function InstructorSection() {
                 <div className="text-emerald-500 text-2xl">✓</div>
                 <div>
                   <h5 className="text-white font-semibold mb-1">최신 스윙분석 장비</h5>
-                  <p className="text-gray-400 text-sm">QED EYE XO, QED PRO 시스템 완비</p>
+                  <p className="text-gray-400 text-sm">QED EYE XO, QED PRO, GSPI(SBS골프) 시스템 완비</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">

@@ -11,7 +11,7 @@ export default function ProgramSection() {
   const programs = [
     {
       title: '입문 프로그램',
-      duration: '3개월 과정',
+      duration: '6개월 과정',
       features: ['그립 & 자세 교정', '기본 스윙 동작', '숏게임 기초', '규칙 및 에티켓'],
       level: '초급',
       color: 'from-green-600 to-green-700'
