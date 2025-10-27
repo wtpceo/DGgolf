@@ -42,7 +42,7 @@ const facilities = [
     title: '프리미엄 휴게공간',
     description: '우월한 실내 인테리어와 편안한 휴식 공간',
     features: ['쾌적한 라운지', '회원 간 네트워킹', '고급스러운 인테리어', '차별화된 휴식 경험'],
-    image: '/imgage/facility-lounge.png',
+    image: '/imgage/KakaoTalk_Photo_2025-10-27-09-45-10 001.jpeg',
     thumbnail: '/imgage/facility-lounge-thumb.png'
   }
 ];
